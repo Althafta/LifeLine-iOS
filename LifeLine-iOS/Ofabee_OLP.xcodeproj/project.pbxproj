@@ -1631,7 +1631,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bee96360-9d46-4156-ac26-654330d2f7c8";
 				PROVISIONING_PROFILE_SPECIFIER = Lifeline_Developer_Profile_Sep_12;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/user/Desktop/Althaf/Projects/Git Projects/Life Line /LifeLine-iOS/Ofabee_OLP/Ofabee_OLP-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/user/Desktop/Althaf/Projects/Git Projects/Lifeline_Git/LifeLine-iOS/Ofabee_OLP/Ofabee_OLP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
@@ -1662,7 +1662,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bee96360-9d46-4156-ac26-654330d2f7c8";
 				PROVISIONING_PROFILE_SPECIFIER = Lifeline_Developer_Profile_Sep_12;
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/user/Desktop/Althaf/Projects/Git Projects/Life Line /LifeLine-iOS/Ofabee_OLP/Ofabee_OLP-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/user/Desktop/Althaf/Projects/Git Projects/Lifeline_Git/LifeLine-iOS/Ofabee_OLP/Ofabee_OLP-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
