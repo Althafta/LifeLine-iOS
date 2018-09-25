@@ -56,13 +56,20 @@ class OFAHomePageGridCollectionViewController: UICollectionViewController {
             switch indexPath.row{
             case 0:
                 if userId == nil {
-//                    delegate.initializePreLoginPage()
                     let browseCourse = self.storyboard?.instantiateViewController(withIdentifier: "BrowseCourseTVC") as!OFABrowseCourseTableViewController
                     self.navigationItem.title = ""
                     UIApplication.shared.statusBarStyle = .lightContent
                     self.navigationController?.pushViewController(browseCourse, animated: true)
                 }else{
                     delegate.initializeMyCourse()
+                }
+            case 1:
+                if userId == nil {
+                    delegate.initializePreLoginPage()
+                }else{
+                    let browseCourse = self.storyboard?.instantiateViewController(withIdentifier: "E-BookTVC") as! OFAE_BooksListTableViewController
+                    self.navigationItem.title = ""
+                    self.navigationController?.pushViewController(browseCourse, animated: true)
                 }
             case 2:
                 let storeWebView = self.storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! OFAWebViewViewController

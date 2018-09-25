@@ -24,6 +24,11 @@ class OFALoginTableTableViewController: UITableViewController {
        OFAUtils.setBackgroundForTableView(tableView: self.tableView)
         self.tableView.backgroundColor = .white
         
+        let email = UserDefaults.standard.value(forKey: EMAIL) as? String
+        if email != nil{
+            self.textEmail.text = email!
+        }
+        
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.tapAction))
         singleTap.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(singleTap)
@@ -92,6 +97,7 @@ class OFALoginTableTableViewController: UITableViewController {
                     
                     UserDefaults.standard.set(token as! String, forKey: ACCESS_TOKEN)
                     UserDefaults.standard.set("\(dicResult["id"]!)", forKey: USER_ID)
+                    UserDefaults.standard.set(self.textEmail.text!, forKey: EMAIL)
                     
                     let userDetails = User(context: self.context)
                     userDetails.user_name = "\(dicResult["us_name"]!)"

@@ -140,6 +140,8 @@
 		84F6474E2147A7E3007B4910 /* OFAHomePageGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6474D2147A7E3007B4910 /* OFAHomePageGridCollectionViewController.swift */; };
 		84F647512147AB15007B4910 /* OFAHomePageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F647502147AB15007B4910 /* OFAHomePageCollectionViewCell.swift */; };
 		84FEA9D31F6150B000D2D201 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEA9D21F6150B000D2D201 /* GlobalVariables.swift */; };
+		CE4C18772159FC8E00B6215C /* OFAE-BooksListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C18762159FC8E00B6215C /* OFAE-BooksListTableViewController.swift */; };
+		CE4C187A215A01A400B6215C /* OFAE-BookListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1879215A01A400B6215C /* OFAE-BookListTableViewCell.swift */; };
 		CE85AD53214A22B100E8E784 /* OFAMeditationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85AD52214A22B100E8E784 /* OFAMeditationTableViewController.swift */; };
 		CE85AD57214A22D500E8E784 /* OFAMeditationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85AD56214A22D500E8E784 /* OFAMeditationTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -341,6 +343,8 @@
 		84F6474D2147A7E3007B4910 /* OFAHomePageGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFAHomePageGridCollectionViewController.swift; sourceTree = "<group>"; };
 		84F647502147AB15007B4910 /* OFAHomePageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFAHomePageCollectionViewCell.swift; sourceTree = "<group>"; };
 		84FEA9D21F6150B000D2D201 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		CE4C18762159FC8E00B6215C /* OFAE-BooksListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OFAE-BooksListTableViewController.swift"; sourceTree = "<group>"; };
+		CE4C1879215A01A400B6215C /* OFAE-BookListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OFAE-BookListTableViewCell.swift"; sourceTree = "<group>"; };
 		CE85AD52214A22B100E8E784 /* OFAMeditationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFAMeditationTableViewController.swift; sourceTree = "<group>"; };
 		CE85AD56214A22D500E8E784 /* OFAMeditationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFAMeditationTableViewCell.swift; sourceTree = "<group>"; };
 		D3BA94B31F236A0F032BCA22 /* Pods-Ofabee_OLP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ofabee_OLP.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ofabee_OLP/Pods-Ofabee_OLP.release.xcconfig"; sourceTree = "<group>"; };
@@ -407,6 +411,7 @@
 		8400CB241F3D92C1005B2086 /* LeftSideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				8482636420E6410000E28E21 /* Blog & Store */,
 				8400CB221F3D92B9005B2086 /* OFALeftSideMenuTableViewController.swift */,
 				847CAF5720F4AF6B009D741D /* OFAWebViewSocialLinksViewController.swift */,
 			);
@@ -664,6 +669,7 @@
 				84C2816C1F986DC7002BC508 /* My Profile */,
 				8432478F20E0E53100AD1E26 /* Refer A Friend */,
 				CE85AD54214A22B500E8E784 /* Meditation */,
+				CE4C18782159FCAA00B6215C /* E-Books */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -716,7 +722,6 @@
 				847A83511F398C1B00AB3D32 /* Domain */,
 				84D25F8E1F39E41A006D488A /* User Authentication */,
 				846D09FC1F3B022600AADB82 /* Dashboard */,
-				8482636420E6410000E28E21 /* Blog & Store */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				8432479020E0E57D00AD1E26 /* Challenges */,
 				8432479320E0E5A000AD1E26 /* ReferAFriend */,
 				CE85AD55214A22BE00E8E784 /* HomePage */,
+				CE4C187B215A01AE00B6215C /* E-Book */,
 				CE85AD58214A22DA00E8E784 /* Meditation */,
 			);
 			name = View;
@@ -1169,6 +1175,22 @@
 			name = "Drop Down";
 			sourceTree = "<group>";
 		};
+		CE4C18782159FCAA00B6215C /* E-Books */ = {
+			isa = PBXGroup;
+			children = (
+				CE4C18762159FC8E00B6215C /* OFAE-BooksListTableViewController.swift */,
+			);
+			name = "E-Books";
+			sourceTree = "<group>";
+		};
+		CE4C187B215A01AE00B6215C /* E-Book */ = {
+			isa = PBXGroup;
+			children = (
+				CE4C1879215A01A400B6215C /* OFAE-BookListTableViewCell.swift */,
+			);
+			name = "E-Book";
+			sourceTree = "<group>";
+		};
 		CE85AD54214A22B500E8E784 /* Meditation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1374,6 +1396,7 @@
 				8451BD221FA9F867003DC470 /* OFAChallengeAssessmentContainerViewController.swift in Sources */,
 				8400CB3E1F3DB483005B2086 /* MHProgressButton.swift in Sources */,
 				8432479220E0E59B00AD1E26 /* OFAReferAFriendTableViewCell.swift in Sources */,
+				CE4C18772159FC8E00B6215C /* OFAE-BooksListTableViewController.swift in Sources */,
 				846D09FA1F3AE98F00AADB82 /* HandleNullValues.m in Sources */,
 				847A834E1F398B3500AB3D32 /* UIView+WebCacheOperation.m in Sources */,
 				845EA08C1F45632D002FED75 /* OFAMyCourseDetailsCurriculumTableViewController.swift in Sources */,
@@ -1382,6 +1405,7 @@
 				8488FBDB1F419C06000B5E11 /* OFACourseDetailsCurriculumTableViewCell.swift in Sources */,
 				8419F1531F7241A4003758C8 /* UITextfieldScrollViewController.m in Sources */,
 				847A82F71F39750000AB3D32 /* OFARegisterTableViewController.swift in Sources */,
+				CE4C187A215A01A400B6215C /* OFAE-BookListTableViewCell.swift in Sources */,
 				8400CB261F3D9306005B2086 /* OFALeftSideTableViewCell.swift in Sources */,
 				84FEA9D31F6150B000D2D201 /* GlobalVariables.swift in Sources */,
 				84D25F8A1F39C7CF006D488A /* OFABrowseCourseTableViewController.swift in Sources */,

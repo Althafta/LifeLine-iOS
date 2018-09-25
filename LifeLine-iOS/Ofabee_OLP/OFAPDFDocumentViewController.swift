@@ -25,6 +25,7 @@ class OFAPDFDocumentViewController: UIViewController {
     
     var pdfDocument: PDFDocument?
     var isValidFile = true
+    var isE_Book = false
     
     @IBOutlet var viewPDF: UIView!
     var pdfView: PDFView!
@@ -38,9 +39,14 @@ class OFAPDFDocumentViewController: UIViewController {
         
         self.buttonCurriculum.layer.cornerRadius = self.buttonCurriculum.frame.height/2
         self.buttonQandA.layer.cornerRadius = self.buttonQandA.frame.height/2
-        
+        if isE_Book{
+            self.buttonQandA.isHidden=true
+            self.buttonCurriculum.isHidden=true
+        }
         let pdfURL = URL(string: self.pdfURLString)
 
+//        self.pdfView = PDFView()
+//        self.pdfView.frame = self.viewPDF.frame
         pdfView = PDFView(frame: CGRect(x: 20, y: 20, width: self.view.frame.width, height: self.viewPDF.frame.height))
         self.pdfView.center = self.viewPDF.center
 //        self.pdfView = self.viewPDF as! PDFView!
@@ -50,10 +56,17 @@ class OFAPDFDocumentViewController: UIViewController {
             pdfView.displayMode = PDFDisplayMode.singlePageContinuous
             pdfView.scaleFactor = pdfView.scaleFactorForSizeToFit
             pdfView.autoScales = true
-            
+            if self.isE_Book{
+                pdfView.displayDirection = .horizontal
+                pdfView.minScaleFactor = 0.6
+                pdfView.displayBox = .mediaBox
+                pdfView.displaysAsBook = true
+                pdfView.displaysPageBreaks = true
+            }
+            OFAUtils.removeLoadingView(nil)
             guard let floatPercentage = NumberFormatter().number(from: self.percentage) else { return }
             
-            let currentPage:CGFloat = (CGFloat(floatPercentage) / 100) * CGFloat((pdfDocument?.pageCount)!)
+            let currentPage:CGFloat = (CGFloat(truncating: floatPercentage) / 100) * CGFloat((pdfDocument?.pageCount)!)
             if let pageSelected = pdfDocument?.page(at: Int(currentPage)-1){
                 pdfView.go(to: pageSelected)
             }
@@ -89,7 +102,9 @@ class OFAPDFDocumentViewController: UIViewController {
                 self.percentage = "\(Int(value))"
             }
             if Int(self.percentage)! > Int(self.originalPercentage)!{
-                self.saveLectureProgress()
+                if !self.isE_Book{
+                    self.saveLectureProgress()
+                }
             }
         }
     }
