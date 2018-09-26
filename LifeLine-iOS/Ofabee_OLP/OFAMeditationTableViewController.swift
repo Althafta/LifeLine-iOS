@@ -69,6 +69,7 @@ class OFAMeditationTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.buttonPlay.setTitle("Play", for: .normal)
         self.showInstructionPopUp()
         blur()
         animateIn()

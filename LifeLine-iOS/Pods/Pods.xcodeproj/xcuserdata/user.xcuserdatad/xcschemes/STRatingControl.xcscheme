@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B34A12619826E99BFC4F832692D687B"
+               BlueprintIdentifier = "2C3C66A8C885D14B69DB92667D3C3CD8"
                BlueprintName = "STRatingControl"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "STRatingControl.framework">

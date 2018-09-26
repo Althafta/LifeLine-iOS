@@ -67,9 +67,9 @@ class OFAHomePageGridCollectionViewController: UICollectionViewController {
                 if userId == nil {
                     delegate.initializePreLoginPage()
                 }else{
-                    let browseCourse = self.storyboard?.instantiateViewController(withIdentifier: "E-BookTVC") as! OFAE_BooksListTableViewController
+                    let myBooksContainer = self.storyboard?.instantiateViewController(withIdentifier: "MyEBooksContainerVC") as! OFAEBooksContainerViewController
                     self.navigationItem.title = ""
-                    self.navigationController?.pushViewController(browseCourse, animated: true)
+                    self.navigationController?.pushViewController(myBooksContainer, animated: true)
                 }
             case 2:
                 let storeWebView = self.storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! OFAWebViewViewController

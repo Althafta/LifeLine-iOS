@@ -41,6 +41,7 @@ class OFABrowseCourseTableViewController: UITableViewController,UISearchBarDeleg
     var index = 0
     var assignedTutors = [String]()
     var isPushedView = false
+    var isEBookBrowser = false
     
     let chooseCategoryDropDown = DropDown()
     
@@ -189,7 +190,8 @@ class OFABrowseCourseTableViewController: UITableViewController,UISearchBarDeleg
         let domainKey = UserDefaults.standard.value(forKey: DomainKey) as! String
         let dicParameters = NSDictionary(objects: [categoryId,userID,limit,"\(offset)",domainKey,token], forKeys: ["category_id" as NSCopying,"user_id" as NSCopying,"limit" as NSCopying,"offset" as NSCopying,"domain_key" as NSCopying,"token" as NSCopying])
         OFAUtils.showLoadingViewWithTitle("Loading")
-        Alamofire.request(userBaseURL+"api/course/browse_course", method: .post, parameters: dicParameters as? Parameters, encoding: JSONEncoding.default, headers: [:]).responseJSON { (responseJSON) in
+        let apiString = self.isEBookBrowser ? "api/course/browse_course" : "api/course/browse_course"
+        Alamofire.request(userBaseURL+apiString, method: .post, parameters: dicParameters as? Parameters, encoding: JSONEncoding.default, headers: [:]).responseJSON { (responseJSON) in
             if let result = responseJSON.result.value{
                 OFAUtils.removeLoadingView(nil)
                 let dicResult = result as! NSDictionary
@@ -317,27 +319,29 @@ class OFABrowseCourseTableViewController: UITableViewController,UISearchBarDeleg
         viewDropDown.collapseTableView()
         let cell = self.tableView.cellForRow(at: indexPath) as! OFABrowserCourseTableViewCell
         let dicCourseDetails = self.filteredArray[indexPath.row] as! NSDictionary
-        if "\(dicCourseDetails["is_subscribed"]!)" == "1"{
-            let myCourseDetails = self.storyboard?.instantiateViewController(withIdentifier: "MyCourseDetailsVC") as! OFAMyCourseDetailsViewController
-            self.navigationItem.title = ""
-            myCourseDetails.courseTitle = "\(dicCourseDetails["cb_title"]!)"
-            COURSE_ID = "\(dicCourseDetails["id"]!)"
-            self.navigationController?.pushViewController(myCourseDetails, animated: true)
-        }else{
-            let browseCourseDetails = self.storyboard?.instantiateViewController(withIdentifier: "BrowseCourseDetailsTVC") as! OFABrowseCourseDetailsTableViewController
-            self.navigationItem.title = ""
-            
-            browseCourseDetails.courseTitle = "\(dicCourseDetails["cb_title"]!)"
-            browseCourseDetails.courseId = "\(dicCourseDetails["id"]!)"
-            browseCourseDetails.tutorsName = cell.labelCourseAuthors.text!
-            if "\(dicCourseDetails["wishlist_status"]!)" == "1"{
-                browseCourseDetails.isWishListSelected = true
-            }else if "\(dicCourseDetails["wishlist_status"]!)" == "2"{
-                browseCourseDetails.isWishListVisible = false
+        if !self.isEBookBrowser{
+            if "\(dicCourseDetails["is_subscribed"]!)" == "1"{
+                let myCourseDetails = self.storyboard?.instantiateViewController(withIdentifier: "MyCourseDetailsVC") as! OFAMyCourseDetailsViewController
+                self.navigationItem.title = ""
+                myCourseDetails.courseTitle = "\(dicCourseDetails["cb_title"]!)"
+                COURSE_ID = "\(dicCourseDetails["id"]!)"
+                self.navigationController?.pushViewController(myCourseDetails, animated: true)
             }else{
-                browseCourseDetails.isWishListSelected = false
+                let browseCourseDetails = self.storyboard?.instantiateViewController(withIdentifier: "BrowseCourseDetailsTVC") as! OFABrowseCourseDetailsTableViewController
+                self.navigationItem.title = ""
+                
+                browseCourseDetails.courseTitle = "\(dicCourseDetails["cb_title"]!)"
+                browseCourseDetails.courseId = "\(dicCourseDetails["id"]!)"
+                browseCourseDetails.tutorsName = cell.labelCourseAuthors.text!
+                if "\(dicCourseDetails["wishlist_status"]!)" == "1"{
+                    browseCourseDetails.isWishListSelected = true
+                }else if "\(dicCourseDetails["wishlist_status"]!)" == "2"{
+                    browseCourseDetails.isWishListVisible = false
+                }else{
+                    browseCourseDetails.isWishListSelected = false
+                }
+                self.navigationController?.pushViewController(browseCourseDetails, animated: true)
             }
-            self.navigationController?.pushViewController(browseCourseDetails, animated: true)
         }
     }
     

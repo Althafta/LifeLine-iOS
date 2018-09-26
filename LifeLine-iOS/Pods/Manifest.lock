@@ -13,6 +13,7 @@ PODS:
   - SlideMenuControllerSwift (4.0.0)
   - SnapKit (3.2.0)
   - STRatingControl (1.1.0)
+  - THPDFKit (0.3.2)
   - YNDropDownMenu (3.0.1)
   - YouTubePlayer (0.4.0)
 
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - SlideMenuControllerSwift
   - SnapKit (~> 3.0)
   - STRatingControl
+  - THPDFKit (~> 0.3.1)
   - YNDropDownMenu
   - YouTubePlayer
 
@@ -44,6 +46,7 @@ SPEC REPOS:
     - SlideMenuControllerSwift
     - SnapKit
     - STRatingControl
+    - THPDFKit
     - YNDropDownMenu
     - YouTubePlayer
 
@@ -60,9 +63,10 @@ SPEC CHECKSUMS:
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   STRatingControl: 92346816fb485c8a547c9687a19f94c81d7929ba
+  THPDFKit: 48f962c5143d4d89e8eeca94559b96493881505a
   YNDropDownMenu: 967ebe0c633ce8f40e8667574525aa230ba24560
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 56a7bcd828b6bed68e048940fb276a1e4a9a160d
+PODFILE CHECKSUM: 7be452110aaa5106e4af353fb440fd0e6ad52c5f
 
 COCOAPODS: 1.5.3

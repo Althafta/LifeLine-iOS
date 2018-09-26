@@ -140,6 +140,7 @@
 		84F6474E2147A7E3007B4910 /* OFAHomePageGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6474D2147A7E3007B4910 /* OFAHomePageGridCollectionViewController.swift */; };
 		84F647512147AB15007B4910 /* OFAHomePageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F647502147AB15007B4910 /* OFAHomePageCollectionViewCell.swift */; };
 		84FEA9D31F6150B000D2D201 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FEA9D21F6150B000D2D201 /* GlobalVariables.swift */; };
+		CE02A4C8215B8B4800F9812E /* OFAEBooksContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE02A4C7215B8B4800F9812E /* OFAEBooksContainerViewController.swift */; };
 		CE4C18772159FC8E00B6215C /* OFAE-BooksListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C18762159FC8E00B6215C /* OFAE-BooksListTableViewController.swift */; };
 		CE4C187A215A01A400B6215C /* OFAE-BookListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C1879215A01A400B6215C /* OFAE-BookListTableViewCell.swift */; };
 		CE85AD53214A22B100E8E784 /* OFAMeditationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE85AD52214A22B100E8E784 /* OFAMeditationTableViewController.swift */; };
@@ -343,6 +344,7 @@
 		84F6474D2147A7E3007B4910 /* OFAHomePageGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFAHomePageGridCollectionViewController.swift; sourceTree = "<group>"; };
 		84F647502147AB15007B4910 /* OFAHomePageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFAHomePageCollectionViewCell.swift; sourceTree = "<group>"; };
 		84FEA9D21F6150B000D2D201 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		CE02A4C7215B8B4800F9812E /* OFAEBooksContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFAEBooksContainerViewController.swift; sourceTree = "<group>"; };
 		CE4C18762159FC8E00B6215C /* OFAE-BooksListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OFAE-BooksListTableViewController.swift"; sourceTree = "<group>"; };
 		CE4C1879215A01A400B6215C /* OFAE-BookListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OFAE-BookListTableViewCell.swift"; sourceTree = "<group>"; };
 		CE85AD52214A22B100E8E784 /* OFAMeditationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OFAMeditationTableViewController.swift; sourceTree = "<group>"; };
@@ -1178,6 +1180,7 @@
 		CE4C18782159FCAA00B6215C /* E-Books */ = {
 			isa = PBXGroup;
 			children = (
+				CE02A4C7215B8B4800F9812E /* OFAEBooksContainerViewController.swift */,
 				CE4C18762159FC8E00B6215C /* OFAE-BooksListTableViewController.swift */,
 			);
 			name = "E-Books";
@@ -1343,6 +1346,7 @@
 				"${BUILT_PRODUCTS_DIR}/STRatingControl/STRatingControl.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/THPDFKit/THPDFKit.framework",
 				"${BUILT_PRODUCTS_DIR}/YNDropDownMenu/YNDropDownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
 			);
@@ -1360,6 +1364,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/STRatingControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/THPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YNDropDownMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer.framework",
 			);
@@ -1432,6 +1437,7 @@
 				8488FBE11F41A447000B5E11 /* OFACourseReviewsTableViewCell.swift in Sources */,
 				84B363DD1F95C795001F4252 /* OFAAssessmentScoreCardTableViewController.swift in Sources */,
 				84879F6E1F737C3B001724C3 /* OFADescriptiveTableViewController.swift in Sources */,
+				CE02A4C8215B8B4800F9812E /* OFAEBooksContainerViewController.swift in Sources */,
 				84DB72B41FBB1C8F003A5053 /* OFAForgotPasswordTableViewController.swift in Sources */,
 				8415BE701F66BA600075B7B5 /* OFAMyCourseResultsTableViewCell.swift in Sources */,
 				847796CA1FAC3DDA00A134D6 /* OFAChallengesAssessmentAnswerOptionsTableViewCell.swift in Sources */,

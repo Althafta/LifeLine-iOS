@@ -24,6 +24,7 @@ pod 'PayUmoney_PnP'
 #pod 'TS2MP4'
 pod 'ADMozaicCollectionViewLayout'
 pod 'MagicPie'
+pod 'THPDFKit', '~> 0.3.1'
 #pod 'FolioReaderKit'
   # Pods for Ofabee_OLP
 
