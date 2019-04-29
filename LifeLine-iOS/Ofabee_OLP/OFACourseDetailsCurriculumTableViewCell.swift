@@ -11,13 +11,11 @@ import UIKit
 import FontAwesomeKit_Swift
 
 protocol CourseDetailsCurriculumDelegate{
-//    func updateRowHeightForCurriculum(with array:NSMutableArray,rowCount:Int,sectionCount:Int)
     func totalHeightForTableView(height:CGFloat)
-//    func getNumberOfRows(rows:Int)
 }
 
 class OFACourseDetailsCurriculumTableViewCell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
-
+    
     @IBOutlet var buttonFullCurriculum: UIButton!
     @IBOutlet var tableViewCurriculumList: UITableView!
     var delegate:CourseDetailsCurriculumDelegate!
@@ -31,19 +29,20 @@ class OFACourseDetailsCurriculumTableViewCell: UITableViewCell,UITableViewDelega
     var rowCount = 0
     var maximumHeight = 0
     
+    var sectionArray = [Int]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.tableViewCurriculumList.isScrollEnabled = false
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-
-    //MARK:- TableView Delegate 
+    
+    //MARK:- TableView Delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
         self.totalSectionCount = self.arraySections.count
@@ -67,16 +66,23 @@ class OFACourseDetailsCurriculumTableViewCell: UITableViewCell,UITableViewDelega
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let arrLectures = self.getCurriculumList(for: section)
-        
-        self.totalRowCount += arrLectures.count
-        
+        if !sectionArray.contains(section){
+            self.sectionArray.append(section)
+            self.totalRowCount += arrLectures.count
+        }
         if isShowMoreSelected == true {
             let totalHeight = (self.totalRowCount * 85) + (self.totalSectionCount * 60)
             self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
             return arrLectures.count
         }else{
             if section < 2{
-                self.delegate.totalHeightForTableView(height: CGFloat(self.totalRowCount * 85  + 3 * 60)+44)
+                if self.totalSectionCount <= 3{
+                    let totalHeight = (self.totalRowCount * 85) + (self.totalSectionCount * 60)+44
+                    self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
+                }else{
+                    let totalHeight = (self.totalRowCount * 85) + (3 * 60)+44
+                    self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
+                }
             }
             if arrLectures.count >= 3{
                 return 3
@@ -84,99 +90,12 @@ class OFACourseDetailsCurriculumTableViewCell: UITableViewCell,UITableViewDelega
                 return arrLectures.count
             }
         }
-//        self.arrayLectures = arrLectures
-        
-//        self.totalRowCount += arrLectures.count
-//
-//        if isShowMoreSelected == true {
-//            let totalHeight = (self.totalRowCount * 85) + (self.totalSectionCount * 60)
-//            self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
-//            return arrLectures.count
-//        }else{
-//            if arrLectures.count > 3 {
-//                if self.arraySections.count==1{
-//                    let totalHeight = (3 * 85) + (self.totalSectionCount * 60)+44
-//                    if self.maximumHeight < totalHeight {
-//                        self.maximumHeight = totalHeight
-//                    }
-//
-//                    self.delegate.totalHeightForTableView(height: CGFloat(self.maximumHeight))
-//                    return 3
-//                }
-//                let totalHeight = (arrLectures.count * 85) + (self.totalSectionCount * 60)+44+44+44
-//                if self.maximumHeight < totalHeight {
-//                    self.maximumHeight = totalHeight
-//                }
-//                self.delegate.totalHeightForTableView(height: CGFloat(self.maximumHeight))//315
-//                return 3
-//            }else{
-//                let totalHeight = (arrLectures.count * 85) + (self.totalSectionCount * 60)
-//                if self.maximumHeight < totalHeight {
-//                    self.maximumHeight = totalHeight
-//                }
-//                self.delegate.totalHeightForTableView(height: CGFloat(self.maximumHeight))
-//                return arrLectures.count
-//            }
-//        }
     }
-    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let dicSection = self.arraySections[section] as! NSDictionary
-//        let arrLectures = dicSection["lectures"] as! NSArray
-//        self.arrayLectures = arrLectures.mutableCopy() as! NSMutableArray
-//
-//        self.totalRowCount += arrLectures.count
-//
-//        if isShowMoreSelected == true {
-//            let totalHeight = (self.totalRowCount * 85) + (self.totalSectionCount * 60)
-//            self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
-//            return arrLectures.count
-//        }else{
-//            if arrayLectures.count >= 3{
-////                let totalHeight = (3*85)
-//                let totalHeight = (3 * 85) + (self.totalSectionCount * 60)+44
-//                print(totalHeight)
-//                self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
-//                rowCount = 3
-//            }else if arrayLectures.count == 2{
-//                let totalHeight = (2 * 85) + (self.totalSectionCount * 60)+44
-//                print(totalHeight)
-//                self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
-//                rowCount = 2
-//            }else if arrayLectures.count == 1{
-//                let totalHeight = (1 * 85) + (self.totalSectionCount * 60)+44
-//                print(totalHeight)
-//                self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
-//                rowCount = 1
-//            }
-//            return rowCount
-////            if arrLectures.count > 3 {
-////                if self.arraySections.count==1{
-////                    let totalHeight = (3 * 85) + (self.totalSectionCount * 60)+44
-////                    self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
-////                    return 3
-////                }else{
-////                    let totalHeight = (3 * 85) + (self.totalSectionCount * 60)+44
-////                    self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))//315
-////                    return 3
-////                }
-////            }else{
-////                let totalHeight = (arrLectures.count * 85) + (self.totalSectionCount * 60)
-////                self.delegate.totalHeightForTableView(height: CGFloat(totalHeight))
-////                return arrLectures.count
-////            }
-//        }
-//    }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableViewCurriculumList.dequeueReusableCell(withIdentifier: "CurriculumDetailsList", for: indexPath) as! OFACourseCurriculumTableViewCell
-//        let dicSection = self.getCurriculumList(for:indexPath.section)[indexPath.section] as! NSDictionary
-//        let arrLectures = dicSection["lectures"] as! NSArray
         let dicLecture = self.getCurriculumList(for:indexPath.section)[indexPath.row] as! NSDictionary
-        
         let details = self.getCurriculumDetail(indexPath: indexPath)
-        
         cell.customizeCellWithDetails(curriculumTitle: "\(dicLecture["cl_lecture_name"]!)", curriculumType: details, count: "\(indexPath.row + 1)")
         return cell
     }
@@ -205,63 +124,50 @@ class OFACourseDetailsCurriculumTableViewCell: UITableViewCell,UITableViewDelega
         let dicSection = self.arraySections[indexPath.section] as! NSDictionary
         let arrLectures = dicSection["lectures"] as! NSArray
         let dicLecture = arrLectures[indexPath.row] as! NSDictionary
-
+        
         curriculumType = "\(dicLecture["cl_lecture_type"]!)"
-
+        
         if curriculumType == "1"{//video
             let duration = "\(dicLecture["duration_hm"]!)"
             let arrString = duration.components(separatedBy: ":")
             
             let stringVar = String()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_play_circle_o)
             
             detailString = "\(faType)   Video - \(arrString[0]) hr \(arrString[1]) min"
         }else if curriculumType == "2"{//Doc
             
             let stringVar = String()
-//            let fontVar = UIFont()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_file_word_o)
             
             detailString = "\(faType)   Document"
         }else if curriculumType == "3"{//Assessment
             
             let stringVar = String()
-//            let fontVar = UIFont()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_file)
             
             detailString = "\(faType)   Assessment - \(dicLecture["num_of_question"]!) questions"
         }else if curriculumType == "4"{//youtube
             
             let stringVar = String()
-//            let fontVar = UIFont()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_youtube)
             
             detailString = "\(faType)   Youtube"
         }else if curriculumType == "5"{//text
             
             let stringVar = String()
-//            let fontVar = UIFont()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_file_text)
             
             detailString = "\(faType)   Text - \(dicLecture["num_of_question"]!) questions"
         }else if curriculumType == "6"{//wikipedia
             
             let stringVar = String()
-//            let fontVar = UIFont()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_wikipedia_w)
             
             detailString = "\(faType)   Wiki"
         }else if curriculumType == "7"{//live
             
             let stringVar = String()
-//            let fontVar = UIFont()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_file_movie_o)
             
             let duration = "\(dicLecture["duration_live"]!)"
@@ -270,16 +176,12 @@ class OFACourseDetailsCurriculumTableViewCell: UITableViewCell,UITableViewDelega
         }else if curriculumType == "8"{//Descriptive
             
             let stringVar = String()
-//            let fontVar = UIFont()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_file)
             
             detailString = "\(faType)   Descriptive - \(dicLecture["num_of_question"]!) questions"
         }else if curriculumType == "9"{//recording
             
             let stringVar = String()
-//            let fontVar = UIFont()
-//            fontVar.fa.fontSize(15)
             let faType = stringVar.fa.fontAwesome(.fa_file_audio_o)
             
             detailString = "\(faType)   Recording"
@@ -288,6 +190,7 @@ class OFACourseDetailsCurriculumTableViewCell: UITableViewCell,UITableViewDelega
     }
     @IBAction func showFullCurriculumPressed(_ sender: UIButton) {
         self.totalRowCount = 0
+        self.sectionArray.removeAll()
         self.buttonFullCurriculum.isHidden = true
         self.isShowMoreSelected = true
         self.tableViewCurriculumList.reloadData()

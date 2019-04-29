@@ -25,6 +25,8 @@ class OFARegisterTableViewController: UITableViewController {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.tapAction))
         singleTap.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(singleTap)
+        
+        self.textPhone.inputAccessoryView = OFAUtils.getDoneToolBarButton(tableView: self, target: #selector(self.tapAction))
     }
 
     override func didReceiveMemoryWarning() {
