@@ -64,11 +64,13 @@ class OFAPDFDocumentViewController: UIViewController {
                 pdfView.displaysPageBreaks = true
             }
             OFAUtils.removeLoadingView(nil)
-            guard let floatPercentage = NumberFormatter().number(from: self.percentage) else { return }
-            
-            let currentPage:CGFloat = (CGFloat(truncating: floatPercentage) / 100) * CGFloat((pdfDocument?.pageCount)!)
-            if let pageSelected = pdfDocument?.page(at: Int(currentPage)-1){
-                pdfView.go(to: pageSelected)
+            if self.percentage != "100"{
+                guard let floatPercentage = NumberFormatter().number(from: self.percentage) else { return }
+                
+                let currentPage:CGFloat = (CGFloat(truncating: floatPercentage) / 100) * CGFloat((pdfDocument?.pageCount)!)
+                if let pageSelected = pdfDocument?.page(at: Int(currentPage)-1){
+                    pdfView.go(to: pageSelected)
+                }
             }
             self.view.addSubview(pdfView)
             self.isValidFile = true

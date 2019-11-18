@@ -25,14 +25,14 @@ class OFALeftSideMenuTableViewController: UITableViewController {
 
     var arraySideMenu = ["Home","My Courses","Refer A Friend","Store","Blog","Upcoming Events","My Profile","Logout"]
     //var arrayIdentifiers = ["MyCourseTVC","ChallengesTVC","ReferContainerVC","WebViewController","WebViewControllerBlog","WebViewEventsController","ProfileTVC",""]
-    var arrayIdentifiers = ["HomePageGrid","MyCoursesContainerVC","ReferContainerVC","WebViewController","WebViewControllerBlog","WebViewEventsController","ProfileTVC",""]
+    var arrayIdentifiers = ["HomeWebViewVC","MyCoursesContainerVC","ReferContainerVC","WebViewController","WebViewControllerBlog","WebViewEventsController","ProfileTVC",""]
 
     var arrayLinks = ["https://www.linkedin.com/in/drppvijayan/","https://www.instagram.com/drppvijayan/?hl=en","https://www.youtube.com/lifelinetv","https://twitter.com/drppvijayan","https://in.pinterest.com/drppvijayan/pins/","https://www.facebook.com/LifelineDr.ppVijayan"]
     
-    var currentRow:Int = 0
+    var currentRow:Int = 1
     var currentSection = 0
     
-    var lastSelectedRow = 0
+    var lastSelectedRow = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()

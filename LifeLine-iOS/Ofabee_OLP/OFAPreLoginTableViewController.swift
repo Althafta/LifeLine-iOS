@@ -34,7 +34,7 @@ class OFAPreLoginTableViewController: UITableViewController {
         self.tableView.backgroundColor = .white
         
         self.tableView.reloadData()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "HomeIcon"), style: .plain, target: self, action: #selector(self.homePressed))
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "HomeIcon"), style: .plain, target: self, action: #selector(self.homePressed))
     }
     
     override func didReceiveMemoryWarning() {

@@ -138,6 +138,18 @@ class OFAContactsTableViewController: UITableViewController,UISearchBarDelegate 
         OFAUtils.showLoadingViewWithTitle("Loading")
         Alamofire.request(userBaseURL+"api/referral/get_invites", method: .post, parameters: dicParameters as? Parameters, encoding: JSONEncoding.default, headers: [:]).responseJSON { (responseJSON) in
             if let dicResult = responseJSON.result.value as? NSDictionary{
+                if "\(dicResult["message"]!)" == "Login failed" {
+                    let sessionAlert = UIAlertController(title: "Session Expired", message: nil, preferredStyle: .alert)
+                    sessionAlert.addAction(UIAlertAction(title: "Login Again", style: .default, handler: { (action) in
+                        self.sessionExpired()
+                    }))
+                    sessionAlert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { (action) in
+                        sessionAlert.dismiss(animated: true, completion: nil)
+                    }))
+                    OFAUtils.removeLoadingView(nil)
+                    self.present(sessionAlert, animated: true, completion: nil)
+                    return
+                }
                 let arrayContacts = dicResult["contacts"] as! NSArray
                 print(arrayContacts)
                 self.arrayContactsInvited = arrayContacts
@@ -150,6 +162,11 @@ class OFAContactsTableViewController: UITableViewController,UISearchBarDelegate 
         }
     }
     
+    
+    func sessionExpired() {
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        delegate.logout()
+    }
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

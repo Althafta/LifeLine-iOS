@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set("1", forKey: DomainKey)
         UIApplication.shared.statusBarStyle = .default
         if UserDefaults.standard.value(forKey: DomainKey) != nil{
-            self.initializeHomeGridPage()
+//            self.initializeHomeGridPage()
+            self.initializePreLoginPage()
         }else{
             self.initializeDomainPage()
         }
@@ -108,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func initializeHomeGridPage(){
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let homeView = storyBoard.instantiateViewController(withIdentifier: "HomeGridNVC")
+        let homeView = storyBoard.instantiateViewController(withIdentifier: "HomeWebNVC")
         self.window?.rootViewController = homeView
         self.window?.makeKeyAndVisible()
     }
@@ -148,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let fbManager = FBSDKLoginManager()
 //        fbManager.logOut()
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let loginView = storyBoard.instantiateViewController(withIdentifier: "HomeGridNVC")
+        let loginView = storyBoard.instantiateViewController(withIdentifier: "PreLoginNVC")
         self.window?.rootViewController = loginView
         self.window?.makeKeyAndVisible()
     }
