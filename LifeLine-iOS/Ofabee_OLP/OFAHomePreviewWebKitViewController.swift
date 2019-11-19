@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class OFAHomePreviewWebKitViewController: UIViewController {
+class OFAHomePreviewWebKitViewController: UIViewController,WKNavigationDelegate {
 
     var contentURLRequest : URLRequest?
     var pageHeading = ""
@@ -17,7 +17,9 @@ class OFAHomePreviewWebKitViewController: UIViewController {
     @IBOutlet weak var webKitPreview: WKWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.webKitPreview.navigationDelegate = self
+        self.webKitPreview.allowsLinkPreview = false
         self.webKitPreview.load(contentURLRequest!)
     }
     
@@ -26,6 +28,13 @@ class OFAHomePreviewWebKitViewController: UIViewController {
         self.navigationItem.title = self.pageHeading
     }
     
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        OFAUtils.showLoadingViewWithTitle(nil)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        OFAUtils.removeLoadingView(nil)
+    }
 
     /*
     // MARK: - Navigation

@@ -23,6 +23,7 @@ class OFAHomeWebViewViewController: UIViewController,WKScriptMessageHandler,WKNa
         
         let webKitHome = WKWebView(frame: self.view.frame, configuration: configuration)
         webKitHome.navigationDelegate = self
+        webKitHome.allowsLinkPreview = false
         
         let url = Bundle.main.url(forResource: "Lifeline_Linked_Sites/lifeline_btns", withExtension: "html")!
         let request = URLRequest(url: URL(string: url.absoluteString)!)
@@ -32,12 +33,12 @@ class OFAHomeWebViewViewController: UIViewController,WKScriptMessageHandler,WKNa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.title = "Lifeline"
+        self.navigationItem.title = "Home"
     }
    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setNavigationBarItem(isSidemenuEnabled: false)
+        self.setNavigationBarItem(isSidemenuEnabled: true)
     }
 
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -53,22 +54,26 @@ class OFAHomeWebViewViewController: UIViewController,WKScriptMessageHandler,WKNa
             webKitPreview.pageHeading = "Lifeline"
             self.navigationItem.title = ""
             if navigationAction.request.url!.absoluteString.contains("https://elearning.lifelinemcs.org"){
-                (UIApplication.shared.delegate as! AppDelegate).initializeMyCourse()
+//                (UIApplication.shared.delegate as! AppDelegate).initializeMyCourse() MyCoursesContainerVC
+                let myCoursePage = self.storyboard?.instantiateViewController(withIdentifier: "MyCoursesContainerVC") as! OFAMyCoursesContainerViewController
+                myCoursePage.isFromHomePage = true
+                self.navigationItem.title = ""
+                self.navigationController?.pushViewController(myCoursePage, animated: true)
+            }else if navigationAction.request.url!.absoluteString.contains("https://api.whatsapp.com"){
+                guard let whatsappURL = URL(string: navigationAction.request.url!.absoluteString) else { return }
+                if UIApplication.shared.canOpenURL(whatsappURL){
+                    UIApplication.shared.open(whatsappURL, options: [:], completionHandler: nil)
+                }else{
+                    self.navigationController?.pushViewController(webKitPreview, animated: true)
+                }
+            }else{
+                self.navigationController?.pushViewController(webKitPreview, animated: true)
             }
-            self.navigationController?.pushViewController(webKitPreview, animated: true)
             return
         }else{
             print("no link")
             decisionHandler(WKNavigationActionPolicy.allow)
         }
-    }
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        OFAUtils.showLoadingViewWithTitle(nil)
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        OFAUtils.removeLoadingView(nil)
     }
     
 }

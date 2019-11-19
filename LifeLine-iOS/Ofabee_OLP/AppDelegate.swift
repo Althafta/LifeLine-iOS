@@ -107,10 +107,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
     }
     
-    func initializeHomeGridPage(){
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let homeView = storyBoard.instantiateViewController(withIdentifier: "HomeWebNVC")
-        self.window?.rootViewController = homeView
+    func initializeHomeGridPage(){ //webview
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        let homeView = storyBoard.instantiateViewController(withIdentifier: "HomeWebNVC")
+//        self.window?.rootViewController = homeView
+//        self.window?.makeKeyAndVisible()
+        UIApplication.shared.statusBarStyle = .lightContent
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let leftMenuVC: OFALeftSideMenuTableViewController = mainStoryboard.instantiateViewController(withIdentifier: "LeftSideMenu") as! OFALeftSideMenuTableViewController
+        let centerNVC = mainStoryboard.instantiateViewController(withIdentifier: "HomeWebNVC")
+//        let centerNavVC = UINavigationController(rootViewController: centerVC)
+        
+        let rootController = FAPanelController()
+        _ = rootController.center(centerNVC).left(leftMenuVC)
+        rootController.leftPanelPosition = .front
+        
+        self.window?.rootViewController = rootController
         self.window?.makeKeyAndVisible()
     }
     

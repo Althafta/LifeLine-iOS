@@ -12,11 +12,14 @@ class OFAMyCoursesContainerViewController: UIViewController {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var buttonMoreCourses: UIButton!
+    var isFromHomePage = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.setNavigationBarItem(isSidemenuEnabled: true)
         
+        if !self.isFromHomePage{
+            self.setNavigationBarItem(isSidemenuEnabled: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
