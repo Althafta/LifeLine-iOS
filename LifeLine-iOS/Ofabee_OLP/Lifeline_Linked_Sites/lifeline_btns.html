@@ -23,18 +23,18 @@
 			<a href="https://www.facebook.com/drppvijayan" target="_blank"><img src="images/4.png" class="lifeline_btn"/></a>
 		</div>
 		<div class="lifeline_btncontainer">
-			<a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@lifelinemindcare.org&su=SUBJECT&body=BODY" target="_blank"><img src="images/5.png" class="lifeline_btn"/></a>
+			<a href="mailto:info@lifelinemindcare.org?&subject=SUBJECT" target="_top"><img src="images/5.png" class="lifeline_btn"/></a>
 		</div>
 		<div class="lifeline_btncontainer">
-			<a href="https://elearning.lifelinemcs.org/malayalam" target="_blank"><img src="images/6.png" class="lifeline_btn"/></a>
+			<a onclick="elearn_mal()" target="_blank"><img src="images/6.png" class="lifeline_btn"/></a>
 		</div>
     </div>
     <div class="breakpoint">
 		<div class="lifeline_btncontainer">
-			<a href="https://elearning.lifelinemcs.org/english" target="_blank"> <img src="images/7.png" class="lifeline_btn"/></a>
+			<a onclick="elearn_eng()" target="_blank"> <img src="images/7.png" class="lifeline_btn"/></a>
 		</div>
 		<div class="lifeline_btncontainer">
-			<a href="https://www.lifelinemcs.org/events/" target="_blank"><img src="images/8.png" class="lifeline_btn"/></a>
+			<a href="http://lifelinemcs.org/registerworkshop" target="_blank"><img src="images/8.png" class="lifeline_btn"/></a>
 		</div>
 		<div class="lifeline_btncontainer">
 			<a href="http://lifelinemcs.org/lifelinepartners" target="_blank"><img src="images/9.png" class="lifeline_btn"/></a>
@@ -70,7 +70,7 @@
 			<a href="https://www.linkedin.com/in/drppvijayan/" target="_blank"><img src="images/17.png" class="lifeline_btn"/></a>
 		</div>
 		<div class="lifeline_btncontainer">
-			<a href="https://www.lifelinemcs.org/store/" target="_blank"><img src="images/18.png" class="lifeline_btn"/></a>
+			<a href="http://lifelinemcs.org/bookorder" target="_blank"><img src="images/18.png" class="lifeline_btn"/></a>
 		</div>
 	</div>
 	<div class="breakpoint">
@@ -94,5 +94,16 @@
 		<div class="w-100"></div>
 	</div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function elearn_mal()
+	{
+		alert('Elearn_malayalam button is clicked');
+	}
+	function elearn_eng()
+	{
+		alert('Elearn_english button is clicked');
+	}
+</script>
 </body>
 </html>

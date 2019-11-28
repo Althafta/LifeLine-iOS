@@ -66,6 +66,24 @@ class OFAHomeWebViewViewController: UIViewController,WKScriptMessageHandler,WKNa
                 }else{
                     self.navigationController?.pushViewController(webKitPreview, animated: true)
                 }
+            }else if navigationAction.request.url!.absoluteString.contains("mailto:"){
+                guard let mailURL = URL(string: navigationAction.request.url!.absoluteString) else { return }
+                if UIApplication.shared.canOpenURL(mailURL){
+                    UIApplication.shared.open(mailURL, options: [:], completionHandler: nil)
+                }else{
+                    let mailAlert = UIAlertController(title: "Sorry", message: "Seems like you don't have any mailing application. Do you want to copy email address?", preferredStyle: .alert)
+                    mailAlert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (action) in
+                        let emailAddress = mailURL.absoluteString.emailAddresses()
+                        print(emailAddress)
+                        let pasteboard = UIPasteboard.general
+                        pasteboard.string = emailAddress[0]
+                        OFAUtils.showToastWithTitle("Email Address copied to clipboard")
+                    }))
+                    mailAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+                        
+                    }))
+                    self.present(mailAlert, animated: true, completion: nil)
+                }
             }else{
                 self.navigationController?.pushViewController(webKitPreview, animated: true)
             }
@@ -76,4 +94,24 @@ class OFAHomeWebViewViewController: UIViewController,WKScriptMessageHandler,WKNa
         }
     }
     
+}
+
+extension String {
+    /** Get email addresses in a string, discard any other content. */
+    func emailAddresses() -> [String] {
+        var addresses = [String]()
+        if let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue) {
+            let matches = detector.matches(in: self, options: [], range: NSMakeRange(0, self.count))
+            for match in matches {
+                if let matchURL = match.url,
+                    let matchURLComponents = URLComponents(url: matchURL, resolvingAgainstBaseURL: false),
+                    matchURLComponents.scheme == "mailto"
+                {
+                    let address = matchURLComponents.path
+                    addresses.append(String(address))
+                }
+            }
+        }
+        return addresses
+    }
 }
