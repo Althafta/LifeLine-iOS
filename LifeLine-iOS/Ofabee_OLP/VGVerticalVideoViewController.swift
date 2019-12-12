@@ -93,6 +93,11 @@ class VGVerticalVideoViewController: UIViewController {
         }else{
             self.avPlayer.play()
         }
+        do {
+           try AVAudioSession.sharedInstance().setCategory(.playback)
+        } catch(let error) {
+            print(error.localizedDescription)
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(self.didFinishedPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
